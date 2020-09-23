@@ -25,7 +25,19 @@
       const video = document.querySelector("video");
       const btnPlay = document.querySelector("button");
 
-      btnPlay.onclick = () => video.play();
+      function MediaPlayer(config) {
+        this.media = config.element;
+      }
+      MediaPlayer.prototype.play = function () {
+        this.media.paused ? this.media.play() : this.media.pause();
+      };
+
+      const player = new MediaPlayer({ element: video });
+      btnPlay.onclick = () => {
+        player.play();
+      };
+
+      video.onclick = () => player.pause();
     </script>
   </body>
 </html>
